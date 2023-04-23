@@ -17,17 +17,13 @@ searchCountry.addEventListener(`input`, debounce(onInput, DEBOUNCE_DELAY))
 function onInput(e) {
   let countryName = e.target.value;
   if (countryName.trim() === ``) {
-    clear(countryList)
-    clear(countryInfo)
-    return;  
+    return;
   }
   
   fetchCountries(countryName)
     .then(data => {
       if (data.length > 10) {
         Notify.info('Too many matches found. Please enter a more specific name.')
-        clear(countryList)
-        clear(countryInfo)
       } 
 
       if(data.length > 1  && data.length <= 10) {
