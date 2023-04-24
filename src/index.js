@@ -15,9 +15,10 @@ const DEBOUNCE_DELAY = 300;
 searchCountry.addEventListener(`input`, debounce(onInput, DEBOUNCE_DELAY))
 
 function onInput(e) {
-  let countryName = e.target.value;
-  if (countryName.trim() === ``) {
+  let countryName = e.target.value.trim();
+  if (!countryName) {
     clear(countryInfo)
+    clear(countryList)
     return;
   }
   
@@ -33,7 +34,7 @@ function onInput(e) {
       }
       
       if (data.length === 1) {
-        countryInfo.innerHTML = createMarcupCountryInfo(data)
+        countryInfo.innerHTML = createMarcupCountryInfo(data);
         clear(countryList)
       }
     })
